@@ -1,18 +1,21 @@
-# import argparse
-# from sys import stdin,stdout
+import argparse
 
-# # parse arguments
-# def parseArgs():
-#     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-#     parser.add_argument('-i', '--input', required=False, type=argparse.FileType('r'), default=stdin, help="Input FASTA")
-#     parser.add_argument('-o', '--output', required=False, type=argparse.FileType('w'), default=stdout, help="Output")
-#     args = parser.parse_args()
-#     return args.input, args.output
+# =====================
+#       PARSER
+# =====================
+def parseArgs():
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument('-i', '--input', required=False, help="Input FASTA", required=True)
+    parser.add_argument('-o', '--output', required=False, help="Output", required=True)
+    args = parser.parse_args()
+    return args.input, args.output
+
+input_path, output_path = parseArgs()
 
 
-file_path = "/home/clement/projects/UTILS/test.fasta"
-
-
+# =====================
+#     FASTA READER
+# =====================
 def read_fasta(in_file):
     fasta_dict = dict()
     seq = ""
@@ -28,8 +31,16 @@ def read_fasta(in_file):
             fasta_dict[name] = seq
     return fasta_dict
 
+# =====================
+#       PROCESS
+# =====================
 
-with open(file_path, "r") as f:
-    fasta = read_fasta(f)
+# INPUT FILE
+with open(input_path, "r") as infile:
+    fasta = read_fasta(infile)
     print(fasta)
 
+
+## OUTPUT FILE
+# with open(output_path, "w") as outfile:
+    # to complete
