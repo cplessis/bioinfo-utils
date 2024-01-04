@@ -1,9 +1,10 @@
 # bioinfo-utils
+A list of tools to make it easy.
 
 
 ## fasta2json
 
-An easy tool to export any FASTA file to JSON.
+An easy tool to export any **FASTA** file to **JSON** format.
 
 Command example:
 ```{python}
