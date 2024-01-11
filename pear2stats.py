@@ -56,10 +56,5 @@ fig = px.bar(
     hover_data=["reads","total_reads","ratio"],
     title='PEAR STATS'
     )
-
-fig.update_layout({
-'plot_bgcolor': 'rgba(0, 0, 0, 0)',
-'paper_bgcolor': 'rgba(0, 0, 0, 0)',
-})
-
+print("Writing HTML ...")
 fig.write_html(f"{out_path}/pear.html")
