@@ -6,9 +6,10 @@ import argparse
 parser = argparse.ArgumentParser(description="This program convert a FASTA file to a JSON format")
 parser.add_argument('-i', '--files-path', help="Path to LOG file from pear", required=True)
 parser.add_argument('-o', '--output-path', help="Path to output directory", required=True)
+parser.add_argument('-t', '--out-type', help="Row number of reads (reads) or % (ratio)", default="reads", choices=["reads", "ratio"])
 args = parser.parse_args()
 
-files_path, out_path = args.files_path, args.output_path
+files_path, out_path, out_type = args.files_path, args.output_path, args.out_type
 
 ar = "Assembled reads ."
 dr = "Discarded reads ."
@@ -50,9 +51,9 @@ for file_path in glob(f"{files_path}/*.log"):
 
 df = pd.DataFrame(res_list)
 fig = px.bar(
-    df, x="reads", y="sample", color='type', orientation='h',
+    df, x=out_type, y="sample", color='type', orientation='h',
     color_discrete_sequence=["blue", "red", "goldenrod"],
-    hover_data=["reads","ratio"],
+    hover_data=["reads","total_reads","ratio"],
     title='PEAR STATS'
     )
 
