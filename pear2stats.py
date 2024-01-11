@@ -52,9 +52,18 @@ for file_path in glob(f"{files_path}/*.log"):
 df = pd.DataFrame(res_list)
 fig = px.bar(
     df, x=out_type, y="sample", color='type', orientation='h',
-    color_discrete_sequence=["blue", "red", "goldenrod"],
+    color_discrete_sequence=["#6495ED", "#DE3163", "#FF7F50"],
     hover_data=["reads","total_reads","ratio"],
-    title='PEAR STATS'
+    title='PEAR STATS',
+    text=df['ratio'].apply(lambda x: f"{x*100:.1f}%")
     )
+
+fig.update_layout(
+    xaxis_title="Reads number", yaxis_title="Sample name",
+    template='gridon',
+    plot_bgcolor='rgba(0, 0, 0, 0)',
+    paper_bgcolor='rgba(0, 0, 0, 0)'
+)
+
 print("Writing HTML ...")
 fig.write_html(f"{out_path}/pear.html")
