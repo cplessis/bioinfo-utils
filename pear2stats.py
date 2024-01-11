@@ -3,7 +3,7 @@ import pandas as pd
 from glob import glob
 import argparse
 
-parser = argparse.ArgumentParser(description="This program convert a FASTA file to a JSON format")
+parser = argparse.ArgumentParser(description="This program export LOGs from PEAR to HTML report.")
 parser.add_argument('-i', '--files-path', help="Path to LOG file from pear", required=True)
 parser.add_argument('-o', '--output-path', help="Path to output directory", required=True)
 parser.add_argument('-t', '--out-type', help="Row number of reads (reads) or % (ratio)", default="reads", choices=["reads", "ratio"])
